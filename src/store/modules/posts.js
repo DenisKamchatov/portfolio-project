@@ -4,6 +4,7 @@ export default {
         locations: [],
         charactersPage: 1,
         location: [],
+        charactersInLocation: [],
     },
     actions: {
         async fetchCharacters(ctx, page) {
@@ -20,6 +21,11 @@ export default {
             const res = await fetch(page)
             const location = await res.json()
             ctx.commit('updateLocation', location)
+        },
+        async fetchCharacterInLocation(ctx, page) {
+            const res = await fetch(page)
+            const character = await res.json()
+            ctx.commit('updateCharactersInLocation', character)
         }
     },
     mutations: {
@@ -31,6 +37,9 @@ export default {
         },
         updateLocation(state, location) {
             state.location = location
+        },
+        updateCharactersInLocation(state, character) {
+            state.charactersInLocation.push(character)
         }
     },
     getters: {
@@ -45,6 +54,9 @@ export default {
         },
         getOneLocation(state) {
             return state.location
+        },
+        getCharactersInLocation(state) {
+            return state.charactersInLocation
         }
     },
 }
