@@ -17,8 +17,7 @@
         <v-card-text>Пол: {{ characterData.gender }}</v-card-text>
         <v-card-text>Раса: {{ characterData.species }}</v-card-text>
         <v-card-text>На данный момент: {{ characterData.status }}</v-card-text>
-        <v-card-text v-if="characterData.origin.name !== 'unknown'" >Происхождение: <router-link :to="{name: 'LocationPage', params:{id: getOneLocation.id,characterId: characterData.id, character: characterData.name}}">{{ characterData.origin.name }}</router-link></v-card-text>
-        <v-card-text v-else>Происхождение: неизвестно</v-card-text>
+        <v-card-text >Происхождение: <router-link :to="{name: 'LocationPage', params:{id: getOneLocation.id,characterId: characterData.id, character: characterData.name}}">{{ characterData.location.name }}</router-link></v-card-text>
       </v-card>
     </v-container>
   </v-container>
@@ -45,11 +44,8 @@ export default {
   async mounted() {
     await this.fetchCharacters(this.getCharactersPage)
 
-    if (this.characterData.origin.url !== 'unknown') {
-      const url = this.characterData.origin.url
-
+      const url = this.characterData.location.url
       await this.fetchLocation(url)
-    }
 
 
 
