@@ -22,7 +22,7 @@
           <v-hover
               v-slot="{ hover }"
               v-for="(character, i) in getCharactersInLocation"
-              :key="character.id"
+              :key="i"
           >
             <v-card
                 :elevation="hover ? 5 : 2"
@@ -82,13 +82,11 @@ export default {
   methods: {
     ...mapActions(['fetchLocations', 'fetchCharacterInLocation', 'fetchCharacters']),
     moreCharacters() {
-      console.log(this.getCharactersInLocation.length)
       this.count += 20
     }
   },
   async mounted() {
     await this.fetchLocations()
-    await  this.fetchCharacters()
 
     for (const page of this.locationData.residents) {
       await this.fetchCharacterInLocation(page)
