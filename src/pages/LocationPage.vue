@@ -20,28 +20,33 @@
 
         <v-row class="d-flex flex-wrap justify-space-between">
           <v-hover
-              v-slot="{ hover }"
               v-for="(character, i) in getCharactersInLocation"
-              :key="i"
+              :key="character.id"
+              v-slot="{ hover }"
           >
             <v-card
                 :elevation="hover ? 5 : 2"
                 :class="{ 'on-hover': hover }"
                 max-width="30%"
                 class="mt-3 card"
-                v-if="i <= count && character.id <= 20"
+                @click="deleteCharacters"
                 :to="{name: 'CharacterPage', params: {id: character.id}}"
+                v-if="count > i"
             >
               <v-img
                   :src="character.image"
               />
               <v-card-text>{{ character.name }}</v-card-text>
             </v-card>
+            <v-card v-else></v-card>
           </v-hover>
         </v-row>
+
+        <v-card-subtitle v-if="getCharactersInLocation.length === 0" class="text-center">В данном измерении нет персонажей :(</v-card-subtitle>
+        
         <div class="d-flex justify-end">
           <v-btn
-              v-if="count > 20"
+              v-if="getCharactersInLocation.length > count"
               color="primary"
               class="mt-8"
               @click="moreCharacters"
@@ -56,7 +61,6 @@
           >
             Показать еще
           </v-btn>
-
         </div>
       </v-card>
     </v-container>
@@ -64,7 +68,7 @@
 </template>
 
 <script>
-import {mapActions, mapGetters} from "vuex"
+import {mapActions, mapGetters, mapMutations} from "vuex"
 export default {
   name: "LocationPage",
   data: () => ({
@@ -81,14 +85,18 @@ export default {
   },
   methods: {
     ...mapActions(['fetchLocations', 'fetchCharacterInLocation', 'fetchCharacters']),
+    ...mapMutations(['reloadCharactersOnLocation']),
+    deleteCharacters() {
+      this.reloadCharactersOnLocation()
+    },
     moreCharacters() {
       this.count += 20
-    }
+    },
   },
   async mounted() {
     await this.fetchLocations()
 
-    for (const page of this.locationData.residents) {
+    for (let page of this.locationData.residents) {
       await this.fetchCharacterInLocation(page)
     }
   }

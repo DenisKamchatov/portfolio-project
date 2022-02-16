@@ -63,7 +63,7 @@ export default {
     ...mapActions(['fetchCharacters']),
   },
   async mounted() {
-    await this.fetchCharacters(1)
+      await this.fetchCharacters(1)
   }
 }
 </script>

@@ -17,12 +17,16 @@
           <v-card-text>Тип: {{ location.type }}</v-card-text>
           <v-card-text>Измерение: {{ location.dimension }}</v-card-text>
 
-          <v-btn
-            color="primary"
-            :to="{name: 'LocationPage', params:{id: location.id}}"
+          <div
+              @click="deleteCharacters"
           >
-            Подробнее
-          </v-btn>
+            <v-btn
+                color="primary"
+                :to="{name: 'LocationPage', params:{id: location.id}}"
+            >
+              Подробнее
+            </v-btn>
+          </div>
         </v-card>
       </v-hover>
     </v-row>
@@ -30,7 +34,7 @@
 </template>
 
 <script>
-import {mapGetters, mapActions} from "vuex"
+import {mapGetters, mapActions, mapMutations} from "vuex"
 export default {
   name: "LocationsPage",
   computed: {
@@ -38,6 +42,10 @@ export default {
   },
   methods: {
     ...mapActions(['fetchLocations']),
+    ...mapMutations(['reloadCharactersOnLocation']),
+    deleteCharacters() {
+      this.reloadCharactersOnLocation()
+    },
   },
   async mounted() {
     await this.fetchLocations()

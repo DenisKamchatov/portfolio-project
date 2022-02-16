@@ -17,7 +17,7 @@
       <v-spacer/>
 
       <v-col class="col-8">
-        <h1 class="text-center">Главная страница сайта с постами</h1>
+        <h1 class="text-center">Главная страница сайта с карточками персонажей из "Рика и Морти"</h1>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores aspernatur aut cum in maiores modi obcaecati placeat suscipit tempora velit! Dicta ex iusto necessitatibus obcaecati quo sapiente ut veniam, voluptatem?
         </p>

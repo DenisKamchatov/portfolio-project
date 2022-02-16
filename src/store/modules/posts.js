@@ -1,6 +1,7 @@
 export default {
     state: {
         characters: [],
+        charactersInfo: [],
         locations: [],
         charactersPage: 1,
         location: [],
@@ -40,7 +41,10 @@ export default {
         },
         updateCharactersInLocation(state, character) {
             state.charactersInLocation.push(character)
-        }
+        },
+        reloadCharactersOnLocation(state) {
+            state.charactersInLocation = []
+        },
     },
     getters: {
         allCharacters(state) {
@@ -57,6 +61,7 @@ export default {
         },
         getCharactersInLocation(state) {
             return state.charactersInLocation
-        }
+        },
+
     },
 }
