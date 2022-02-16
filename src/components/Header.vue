@@ -12,10 +12,10 @@
       <v-btn outlined to="/" class="mr-5">
         Главная
       </v-btn>
-      <v-btn outlined :to="{name: 'LocationsPage', params:{id: getCharactersPage}}" class="mr-5">
+      <v-btn outlined :to="{name: 'LocationsPage', params:{id: getPage}}" class="mr-5">
         Локации
       </v-btn>
-      <v-btn outlined :to="{name: 'CharactersPage', params:{id: getCharactersPage}}">
+      <v-btn outlined :to="{name: 'CharactersPage', params:{id: getPage}}">
         Карточки
       </v-btn>
     </v-app-bar>
@@ -27,7 +27,7 @@ import {mapGetters} from "vuex"
 export default {
   name: "Header",
   computed: {
-    ...mapGetters(['getCharactersPage'])
+    ...mapGetters(['getPage'])
   }
 }
 </script>

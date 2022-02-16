@@ -41,29 +41,32 @@
       </v-hover>
     </v-row>
     <div class="d-flex justify-end my-10">
-      <v-btn v-if="getCharactersPage === 1" disabled>Предыдущая</v-btn>
-      <v-btn v-else>Предыдущая</v-btn>
-      <v-btn class="ml-4">Следующая</v-btn>
+      <v-btn disabled>Предыдущая</v-btn>
+      <v-btn class="ml-4" @click="nextPageButton" :to="{name: 'CharactersPage', params: {id: parseInt(getPage + 1)}}">Следующая</v-btn>
     </div>
   </v-container>
 </template>
 
 <script>
 import PostForm from "../components/PostForm";
-import {mapGetters, mapActions} from "vuex"
+import {mapGetters, mapActions, mapMutations} from "vuex"
 export default {
   name: "Posts",
   components: {
     PostForm
   },
   computed: {
-    ...mapGetters(["allCharacters", 'getCharactersPage']),
+    ...mapGetters(["allCharacters", 'getPage']),
   },
   methods: {
     ...mapActions(['fetchCharacters']),
+    ...mapMutations(['nextPage']),
+    nextPageButton() {
+      this.nextPage()
+    }
   },
   async mounted() {
-      await this.fetchCharacters(1)
+      await this.fetchCharacters(this.getPage)
   }
 }
 </script>

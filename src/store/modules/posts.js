@@ -1,11 +1,11 @@
 export default {
     state: {
         characters: [],
-        charactersInfo: [],
         locations: [],
-        charactersPage: 1,
         location: [],
         charactersInLocation: [],
+        page: 1,
+
     },
     actions: {
         async fetchCharacters(ctx, page) {
@@ -45,6 +45,9 @@ export default {
         reloadCharactersOnLocation(state) {
             state.charactersInLocation = []
         },
+        nextPage(state) {
+            state.page += 1
+        }
     },
     getters: {
         allCharacters(state) {
@@ -53,15 +56,14 @@ export default {
         allLocations(state) {
             return state.locations
         },
-        getCharactersPage(state) {
-            return state.charactersPage
-        },
         getOneLocation(state) {
             return state.location
         },
         getCharactersInLocation(state) {
             return state.charactersInLocation
         },
-
+        getPage(state) {
+            return state.page
+        }
     },
 }
