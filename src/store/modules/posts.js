@@ -4,7 +4,8 @@ export default {
         locations: [],
         location: [],
         charactersInLocation: [],
-        page: 1
+        page: 1,
+        countPages: 2
     },
     actions: {
         async fetchAllCharacters(ctx, page) {
@@ -36,7 +37,6 @@ export default {
                 for (let i = 0; i < 20; i++) {
                     state.characters.push(characters.results[i])
                 }
-                console.log(characters.results)
             }
         },
         updateLocations(state, locations) {
@@ -52,6 +52,9 @@ export default {
             state.charactersInLocation = []
             state.characters = []
         },
+        nextPage(state) {
+            state.page += 1
+        }
     },
     getters: {
         allCharacters(state) {
@@ -68,6 +71,9 @@ export default {
         },
         getPage(state) {
             return state.page
+        },
+        getCountPages(state) {
+            return state.countPages
         }
     },
 }

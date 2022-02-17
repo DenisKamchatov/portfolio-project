@@ -3,11 +3,13 @@
     <PostForm />
     <h1 class="text-center pb-5">Карточки с персонажами из Рика и Морти</h1>
     <v-text-field
+        v-model="search"
         label="Поиск персонажа"
+        placeholder="Имя персонажа по-английски"
     ></v-text-field>
     <v-row class="justify-center">
       <v-hover
-          v-for="(character, i) in allCharacters"
+          v-for="(character, i) in searchCharacters"
           :key="i"
           v-slot="{ hover }"
       >
@@ -16,6 +18,41 @@
             :class="{ 'on-hover': hover }"
             class="mx-auto card mx-4 my-4 col-3"
             max-width="344"
+            v-if="i <= count"
+        >
+          <v-img
+              :src="character.image"
+              height="200px"
+          ></v-img>
+
+          <v-card-title class="text">
+            {{ character.name }}
+          </v-card-title>
+
+          <v-card-subtitle class="text">
+            Пол: {{ character.gender }}
+            <v-spacer></v-spacer>
+            Раса: {{ character.species }}
+          </v-card-subtitle>
+          <span
+              @click="deleteCharacters"
+          >
+            <v-btn
+                color="primary"
+                :to="{name: 'CharacterPage', params:{id: character.id}}"
+            >
+              Посмотреть
+            </v-btn>
+          </span>
+        </v-card>
+        <v-card
+            :elevation="hover ? 5 : 2"
+            :class="{ 'on-hover': hover }"
+            class="mx-auto card mx-4 my-4 col-3 d-none"
+            max-width="344"
+
+            v-else
+
         >
           <v-img
               :src="character.image"
@@ -44,9 +81,9 @@
         </v-card>
       </v-hover>
     </v-row>
-    <div class="d-flex justify-end my-10">
-      <v-btn disabled>Предыдущая</v-btn>
-      <v-btn class="ml-4" :to="{name: 'CharactersPage', params: {id: parseInt(getPage + 1)}}">Следующая</v-btn>
+    <h2 class="text-center my-6" v-if="searchCharacters.length === 0">Персонажа с таким именем нет :(</h2>
+    <div v-if="searchCharacters.length !== 0" class="d-flex justify-end my-10">
+      <v-btn color="primary" @click="moreCharacters">Показать еще</v-btn>
     </div>
   </v-container>
 </template>
@@ -60,21 +97,33 @@ export default {
     PostForm,
   },
   data: () => ({
-    page: 1
+    count: 20,
+    search: '',
   }),
   computed: {
-    ...mapGetters(["allCharacters", 'getPage']),
+    ...mapGetters(["allCharacters", 'getPage', 'getCountPages']),
+    searchCharacters() {
+      return this.allCharacters.filter(character => {
+        return character.name.toLowerCase().includes(this.search)
+      })
+    }
   },
   methods: {
     ...mapActions(['fetchAllCharacters']),
-    ...mapMutations(['reloadAllCharacters']),
+    ...mapMutations(['reloadAllCharacters', 'nextPage']),
     deleteCharacters() {
       this.reloadAllCharacters()
     },
+    nextPageButton() {
+      this.nextPage()
+    },
+    moreCharacters() {
+      this.count += 20
+    }
   },
   async mounted() {
-    for (this.page; this.page <= 2; this.page++) {
-      await this.fetchAllCharacters(this.page)
+    for (let i = 1; i <= this.getCountPages; i++) {
+      await this.fetchAllCharacters(i)
     }
   }
 }
