@@ -5,7 +5,7 @@ export default {
         location: [],
         charactersInLocation: [],
         page: 1,
-        countPages: 2
+        countPages: 3
     },
     actions: {
         async fetchAllCharacters(ctx, page) {
@@ -46,7 +46,9 @@ export default {
             state.location = location
         },
         updateCharactersInLocation(state, character) {
-            state.charactersInLocation.push(character)
+            if (character.id <= 40) {
+                state.charactersInLocation.push(character)
+            }
         },
         reloadAllCharacters(state) {
             state.charactersInLocation = []
@@ -74,6 +76,6 @@ export default {
         },
         getCountPages(state) {
             return state.countPages
-        }
+        },
     },
 }

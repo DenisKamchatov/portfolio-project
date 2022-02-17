@@ -37,8 +37,9 @@
                   :src="character.image"
               />
               <v-card-text>{{ character.name }}</v-card-text>
+              <v-card-text>{{ character.id }}</v-card-text>
             </v-card>
-            <v-card v-else></v-card>
+            <span v-else></span>
           </v-hover>
         </v-row>
 
@@ -72,7 +73,7 @@ import {mapActions, mapGetters, mapMutations} from "vuex"
 export default {
   name: "LocationPage",
   data: () => ({
-    count: 20
+    count: 10
   }),
   computed: {
     ...mapGetters(['allLocations', 'getCharactersInLocation', 'getCountPages']),

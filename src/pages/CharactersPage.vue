@@ -1,6 +1,5 @@
 <template>
   <v-container>
-    <PostForm />
     <h1 class="text-center pb-5">Карточки с персонажами из Рика и Морти</h1>
     <v-text-field
         v-model="search"
@@ -89,12 +88,10 @@
 </template>
 
 <script>
-import PostForm from "../components/PostForm";
 import {mapGetters, mapActions, mapMutations} from "vuex"
 export default {
   name: "Posts",
   components: {
-    PostForm,
   },
   data: () => ({
     count: 20,
@@ -104,7 +101,7 @@ export default {
     ...mapGetters(["allCharacters", 'getPage', 'getCountPages']),
     searchCharacters() {
       return this.allCharacters.filter(character => {
-        return character.name.toLowerCase().includes(this.search)
+        return character.name.toLowerCase().includes(this.search.toLowerCase())
       })
     }
   },

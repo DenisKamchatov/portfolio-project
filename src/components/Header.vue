@@ -11,10 +11,10 @@
       <v-btn @click="deleteCharacters" outlined to="/" class="mr-5">
         Главная
       </v-btn>
-      <v-btn @click="deleteCharacters" outlined :to="{name: 'LocationsPage', params:{id: getPage}}" class="mr-5">
+      <v-btn @click="deleteCharacters" outlined :to="{name: 'LocationsPage'}" class="mr-5">
         Локации
       </v-btn>
-      <v-btn @click="deleteCharacters" outlined :to="{name: 'CharactersPage', params:{id: getPage}}">
+      <v-btn @click="deleteCharacters" outlined :to="{name: 'CharactersPage'}">
         Карточки
       </v-btn>
     </v-app-bar>

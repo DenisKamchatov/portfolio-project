@@ -15,7 +15,7 @@ const routes = [
     component: MainPage
   },
   {
-    path: '/locations/page/:id',
+    path: '/locations/',
     name: 'LocationsPage',
     component: LocationsPage
   },
@@ -25,7 +25,7 @@ const routes = [
     component: LocationPage
   },
   {
-    path: '/characters/page/:id',
+    path: '/characters/',
     name: 'CharactersPage',
     component: CharactersPage
   },
