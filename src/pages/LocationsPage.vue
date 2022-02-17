@@ -16,6 +16,7 @@
           <v-card-title>{{ location.name }}</v-card-title>
           <v-card-text>Тип: {{ location.type }}</v-card-text>
           <v-card-text>Измерение: {{ location.dimension }}</v-card-text>
+          <v-card-text>{{ location.id }}</v-card-text>
 
           <div
               @click="deleteCharacters"
@@ -30,6 +31,14 @@
         </v-card>
       </v-hover>
     </v-row>
+    <div class="d-flex justify-end mt-5">
+      <v-btn
+          color="primary"
+      >
+        Показать еще
+      </v-btn>
+    </div>
+
   </v-container>
 </template>
 
@@ -37,6 +46,9 @@
 import {mapGetters, mapActions, mapMutations} from "vuex"
 export default {
   name: "LocationsPage",
+  data: () => ({
+    count: 20,
+  }),
   computed: {
     ...mapGetters(['allLocations', 'getCountLocationsPages']),
   },

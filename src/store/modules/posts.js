@@ -34,7 +34,7 @@ export default {
             if (state.characters.length === 0) {
                 state.characters = characters.results
             } else {
-                for (let i = 0; i < 20; i++) {
+                for (let i = 0; i < characters.results.length; i++) {
                     if (characters.results[i].id < 40) {
                         state.characters.push(characters.results[i])
                     }
@@ -42,7 +42,7 @@ export default {
             }
         },
         updateAllLocations(state, locations) {
-            for (let i = 0; i < 20; i++) {
+            for (let i = 0; i < locations.results.length; i++) {
                 state.locations.push(locations.results[i])
             }
         },
