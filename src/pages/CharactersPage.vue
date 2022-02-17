@@ -99,7 +99,7 @@ export default {
     search: '',
   }),
   computed: {
-    ...mapGetters(["allCharacters", 'getPage', 'getCountPages']),
+    ...mapGetters(["allCharacters", 'getCountCharactersPages']),
     searchCharacters() {
       return this.allCharacters.filter(character => {
         return character.name.toLowerCase().includes(this.search.toLowerCase())
@@ -117,7 +117,7 @@ export default {
     }
   },
   async mounted() {
-    for (let i = 1; i <= this.getCountPages; i++) {
+    for (let i = 1; i <= this.getCountCharactersPages; i++) {
       await this.fetchAllCharacters(i)
     }
   }

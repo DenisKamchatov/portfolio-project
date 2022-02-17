@@ -76,7 +76,7 @@ export default {
     count: 10
   }),
   computed: {
-    ...mapGetters(['allLocations', 'getCharactersInLocation', 'getCountPages']),
+    ...mapGetters(['allLocations', 'getCharactersInLocation', 'getCountCharactersPages']),
     locationId() {
       return parseInt(this.$route.params.id)
     },
@@ -97,7 +97,7 @@ export default {
   async mounted() {
     await this.fetchAllLocations()
 
-    for (let i = 1; i <= this.getCountPages; i++) {
+    for (let i = 1; i <= this.getCountCharactersPages; i++) {
       await this.fetchAllCharacters(i)
     }
 

@@ -22,12 +22,10 @@
 </template>
 
 <script>
-import {mapGetters, mapMutations} from "vuex"
+import {mapMutations} from "vuex"
 export default {
   name: "Header",
-  computed: {
-    ...mapGetters(['getPage'])
-  },
+
   methods: {
     ...mapMutations(['reloadAllCharacters']),
     deleteCharacters() {

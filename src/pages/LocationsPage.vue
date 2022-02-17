@@ -38,7 +38,7 @@ import {mapGetters, mapActions, mapMutations} from "vuex"
 export default {
   name: "LocationsPage",
   computed: {
-    ...mapGetters(['allLocations']),
+    ...mapGetters(['allLocations', 'getCountLocationsPages']),
   },
   methods: {
     ...mapActions(['fetchAllLocations']),
@@ -48,7 +48,7 @@ export default {
     },
   },
   async mounted() {
-    await this.fetchAllLocations()
+      await this.fetchAllLocations()
   }
 }
 </script>

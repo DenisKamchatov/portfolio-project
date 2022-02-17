@@ -34,7 +34,7 @@ import {mapActions, mapGetters, mapMutations} from "vuex";
 export default {
   name: "CharacterPage",
   computed: {
-    ...mapGetters(["allCharacters", "getOneLocation", "getCountPages"]),
+    ...mapGetters(["allCharacters", "getOneLocation", "getCountCharactersPages"]),
     characterId() {
       return parseInt(this.$route.params.id)
     },
@@ -51,7 +51,7 @@ export default {
     },
   },
   async mounted() {
-    for (let i = 1; i <= this.getCountPages; i++) {
+    for (let i = 1; i <= this.getCountCharactersPages; i++) {
       await this.fetchAllCharacters(i)
     }
 
