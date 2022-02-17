@@ -4,8 +4,7 @@ export default {
         locations: [],
         location: [],
         charactersInLocation: [],
-        page: 1,
-
+        page: 1
     },
     actions: {
         async fetchCharacters(ctx, page) {
@@ -45,9 +44,6 @@ export default {
         reloadCharactersOnLocation(state) {
             state.charactersInLocation = []
         },
-        nextPage(state) {
-            state.page += 1
-        }
     },
     getters: {
         allCharacters(state) {
