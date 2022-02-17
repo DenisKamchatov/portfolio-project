@@ -21,7 +21,7 @@
         <v-row class="d-flex flex-wrap justify-space-between">
           <v-hover
               v-for="(character, i) in getCharactersInLocation"
-              :key="character.id"
+              :key="i"
               v-slot="{ hover }"
           >
             <v-card
@@ -95,7 +95,9 @@ export default {
     },
   },
   async mounted() {
-    await this.fetchAllLocations()
+    for (let i = 1; i <= 7; i++) {
+      await this.fetchAllLocations(i)
+    }
 
     for (let i = 1; i <= this.getCountCharactersPages; i++) {
       await this.fetchAllCharacters(i)

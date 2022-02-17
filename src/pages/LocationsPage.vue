@@ -3,8 +3,8 @@
     <h1 class="text-center">Страница с локациями</h1>
     <v-row>
       <v-hover
-        v-for="location in allLocations"
-        :key="location.id"
+        v-for="(location, i) in allLocations"
+        :key="i"
         v-slot="{ hover }"
       >
         <v-card
@@ -48,7 +48,9 @@ export default {
     },
   },
   async mounted() {
-      await this.fetchAllLocations()
+    for (let i = 1; i <= 7; i++) {
+      await this.fetchAllLocations(i)
+    }
   }
 }
 </script>

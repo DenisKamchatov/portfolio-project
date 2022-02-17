@@ -13,8 +13,8 @@ export default {
             const characters = await res.json()
             ctx.commit('updateAllCharacters', characters)
         },
-        async fetchAllLocations(ctx) {
-            const res = await fetch('https://rickandmortyapi.com/api/location')
+        async fetchAllLocations(ctx, page) {
+            const res = await fetch('https://rickandmortyapi.com/api/location/?page=' + page)
             const locations = await res.json()
             ctx.commit('updateAllLocations', locations)
         },
@@ -42,7 +42,9 @@ export default {
             }
         },
         updateAllLocations(state, locations) {
-            state.locations = locations.results
+            for (let i = 0; i < 20; i++) {
+                state.locations.push(locations.results[i])
+            }
         },
         updateLocation(state, location) {
             state.location = location
