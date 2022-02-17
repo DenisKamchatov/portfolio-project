@@ -7,10 +7,10 @@ export default {
         page: 1
     },
     actions: {
-        async fetchCharacters(ctx, page) {
+        async fetchAllCharacters(ctx, page) {
             const res = await fetch('https://rickandmortyapi.com/api/character/?page=' + page)
             const characters = await res.json()
-            ctx.commit('updateCharacters', characters)
+            ctx.commit('updateAllCharacters', characters)
         },
         async fetchLocations(ctx) {
             const res = await fetch('https://rickandmortyapi.com/api/location')
@@ -29,8 +29,15 @@ export default {
         }
     },
     mutations: {
-        updateCharacters(state, characters) {
-            state.characters = characters.results
+        updateAllCharacters(state,characters) {
+            if (state.characters.length === 0) {
+                state.characters = characters.results
+            } else {
+                for (let i = 0; i < 20; i++) {
+                    state.characters.push(characters.results[i])
+                }
+                console.log(characters.results)
+            }
         },
         updateLocations(state, locations) {
             state.locations = locations.results
@@ -41,8 +48,9 @@ export default {
         updateCharactersInLocation(state, character) {
             state.charactersInLocation.push(character)
         },
-        reloadCharactersOnLocation(state) {
+        reloadAllCharacters(state) {
             state.charactersInLocation = []
+            state.characters = []
         },
     },
     getters: {

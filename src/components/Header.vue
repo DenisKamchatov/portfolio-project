@@ -8,14 +8,13 @@
       <v-toolbar-title>Рик и Морти</v-toolbar-title>
 
       <v-spacer></v-spacer>
-
-      <v-btn outlined to="/" class="mr-5">
+      <v-btn @click="deleteCharacters" outlined to="/" class="mr-5">
         Главная
       </v-btn>
-      <v-btn outlined :to="{name: 'LocationsPage', params:{id: getPage}}" class="mr-5">
+      <v-btn @click="deleteCharacters" outlined :to="{name: 'LocationsPage', params:{id: getPage}}" class="mr-5">
         Локации
       </v-btn>
-      <v-btn outlined :to="{name: 'CharactersPage', params:{id: getPage}}">
+      <v-btn @click="deleteCharacters" outlined :to="{name: 'CharactersPage', params:{id: getPage}}">
         Карточки
       </v-btn>
     </v-app-bar>
@@ -23,11 +22,17 @@
 </template>
 
 <script>
-import {mapGetters} from "vuex"
+import {mapGetters, mapMutations} from "vuex"
 export default {
   name: "Header",
   computed: {
     ...mapGetters(['getPage'])
+  },
+  methods: {
+    ...mapMutations(['reloadAllCharacters']),
+    deleteCharacters() {
+      this.reloadAllCharacters()
+    },
   }
 }
 </script>

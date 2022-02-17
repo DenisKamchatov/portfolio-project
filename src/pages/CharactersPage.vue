@@ -31,12 +31,16 @@
             <v-spacer></v-spacer>
             Раса: {{ character.species }}
           </v-card-subtitle>
-              <v-btn
-                  color="primary"
-                  :to="{name: 'CharacterPage', params:{id: character.id}}"
-              >
-                Посмотреть
-              </v-btn>
+          <span
+              @click="deleteCharacters"
+          >
+            <v-btn
+                color="primary"
+                :to="{name: 'CharacterPage', params:{id: character.id}}"
+            >
+              Посмотреть
+            </v-btn>
+          </span>
         </v-card>
       </v-hover>
     </v-row>
@@ -49,20 +53,29 @@
 
 <script>
 import PostForm from "../components/PostForm";
-import {mapGetters, mapActions} from "vuex"
+import {mapGetters, mapActions, mapMutations} from "vuex"
 export default {
   name: "Posts",
   components: {
-    PostForm
+    PostForm,
   },
+  data: () => ({
+    page: 1
+  }),
   computed: {
     ...mapGetters(["allCharacters", 'getPage']),
   },
   methods: {
-    ...mapActions(['fetchCharacters']),
+    ...mapActions(['fetchAllCharacters']),
+    ...mapMutations(['reloadAllCharacters']),
+    deleteCharacters() {
+      this.reloadAllCharacters()
+    },
   },
   async mounted() {
-      await this.fetchCharacters(this.getPage)
+    for (this.page; this.page <= 2; this.page++) {
+      await this.fetchAllCharacters(this.page)
+    }
   }
 }
 </script>

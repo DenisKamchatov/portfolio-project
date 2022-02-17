@@ -1,6 +1,6 @@
 <template>
   <v-container class="pt-8">
-    <p><router-link :to="{name: 'CharactersPage'}">Карточки с персонажами</router-link> / Персонаж: {{ characterData.name }}</p>
+    <p><span @click="deleteCharacters"><router-link :to="{name: 'CharactersPage'}">Карточки с персонажами</router-link></span> / Персонаж: {{ characterData.name }}</p>
     <v-container d-flex justify-center>
       <v-card class="pa-7" width="500px">
         <v-img
@@ -44,17 +44,19 @@ export default {
 
   },
   methods: {
-    ...mapActions(['fetchCharacters', 'fetchLocation']),
-    ...mapMutations(['reloadCharactersOnLocation']),
+    ...mapActions(['fetchAllCharacters', 'fetchLocation']),
+    ...mapMutations(['reloadAllCharacters']),
     deleteCharacters() {
-      this.reloadCharactersOnLocation()
+      this.reloadAllCharacters()
     },
   },
   async mounted() {
-    await this.fetchCharacters(1)
+    for (let i = 1; i <= 2; i++) {
+      await this.fetchAllCharacters(i)
+    }
 
-      const url = this.characterData.location.url
-      await this.fetchLocation(url)
+    const url = this.characterData.location.url
+    await this.fetchLocation(url)
   },
 }
 </script>

@@ -84,10 +84,10 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['fetchLocations', 'fetchCharacterInLocation', 'fetchCharacters']),
-    ...mapMutations(['reloadCharactersOnLocation']),
+    ...mapActions(['fetchLocations', 'fetchCharacterInLocation', 'fetchAllCharacters']),
+    ...mapMutations(['reloadAllCharacters']),
     deleteCharacters() {
-      this.reloadCharactersOnLocation()
+      this.reloadAllCharacters()
     },
     moreCharacters() {
       this.count += 20

@@ -42,9 +42,9 @@ export default {
   },
   methods: {
     ...mapActions(['fetchLocations']),
-    ...mapMutations(['reloadCharactersOnLocation']),
+    ...mapMutations(['reloadAllCharacters']),
     deleteCharacters() {
-      this.reloadCharactersOnLocation()
+      this.reloadAllCharacters()
     },
   },
   async mounted() {
