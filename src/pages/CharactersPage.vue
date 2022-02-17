@@ -33,6 +33,7 @@
             <v-spacer></v-spacer>
             Раса: {{ character.species }}
           </v-card-subtitle>
+          <v-card-text>{{ character.id }}</v-card-text>
           <span
               @click="deleteCharacters"
           >
@@ -110,9 +111,6 @@ export default {
     ...mapMutations(['reloadAllCharacters', 'nextPage']),
     deleteCharacters() {
       this.reloadAllCharacters()
-    },
-    nextPageButton() {
-      this.nextPage()
     },
     moreCharacters() {
       this.count += 20

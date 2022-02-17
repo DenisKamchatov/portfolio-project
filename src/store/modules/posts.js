@@ -5,7 +5,7 @@ export default {
         location: [],
         charactersInLocation: [],
         page: 1,
-        countPages: 3
+        countPages: 3,
     },
     actions: {
         async fetchAllCharacters(ctx, page) {
@@ -13,8 +13,8 @@ export default {
             const characters = await res.json()
             ctx.commit('updateAllCharacters', characters)
         },
-        async fetchLocations(ctx) {
-            const res = await fetch('https://rickandmortyapi.com/api/location')
+        async fetchAllLocations(ctx, page) {
+            const res = await fetch('https://rickandmortyapi.com/api/location?page=' + page)
             const locations = await res.json()
             ctx.commit('updateLocations', locations)
         },
@@ -35,7 +35,9 @@ export default {
                 state.characters = characters.results
             } else {
                 for (let i = 0; i < 20; i++) {
-                    state.characters.push(characters.results[i])
+                    if (characters.results[i].id < 40) {
+                        state.characters.push(characters.results[i])
+                    }
                 }
             }
         },

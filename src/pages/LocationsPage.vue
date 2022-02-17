@@ -41,14 +41,14 @@ export default {
     ...mapGetters(['allLocations']),
   },
   methods: {
-    ...mapActions(['fetchLocations']),
+    ...mapActions(['fetchAllLocations']),
     ...mapMutations(['reloadAllCharacters']),
     deleteCharacters() {
       this.reloadAllCharacters()
     },
   },
   async mounted() {
-    await this.fetchLocations()
+    await this.fetchAllLocations()
   }
 }
 </script>

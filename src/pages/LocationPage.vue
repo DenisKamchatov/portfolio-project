@@ -85,7 +85,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['fetchLocations', 'fetchCharacterInLocation', 'fetchAllCharacters']),
+    ...mapActions(['fetchAllLocations', 'fetchCharacterInLocation', 'fetchAllCharacters']),
     ...mapMutations(['reloadAllCharacters']),
     deleteCharacters() {
       this.reloadAllCharacters()
@@ -95,7 +95,7 @@ export default {
     },
   },
   async mounted() {
-    await this.fetchLocations()
+    await this.fetchAllLocations()
 
     for (let i = 1; i <= this.getCountPages; i++) {
       await this.fetchAllCharacters(i)
