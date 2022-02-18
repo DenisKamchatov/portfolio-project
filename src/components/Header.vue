@@ -4,7 +4,7 @@
         color="grey darken-4"
         dense
         dark
-        min-height="60px"
+        height="60px"
         fixed
     >
       <v-toolbar-title>Рик и Морти</v-toolbar-title>
