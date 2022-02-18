@@ -57,6 +57,7 @@ export default {
         reloadAllCharacters(state) {
             state.charactersInLocation = []
             state.characters = []
+            state.locations = []
         },
         nextPage(state) {
             state.page += 1

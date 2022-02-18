@@ -1,9 +1,11 @@
 <template>
   <div>
     <v-app-bar
-        color="deep-black accent-4"
+        color="grey darken-4"
         dense
         dark
+        height="60px"
+        fixed
     >
       <v-toolbar-title>Рик и Морти</v-toolbar-title>
 
