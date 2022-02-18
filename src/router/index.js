@@ -1,10 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import MainPage from "../pages/MainPage";
-import LocationsPage from "../pages/LocationsPage";
-import LocationPage from "../pages/LocationPage";
-import CharactersPage from "../pages/CharactersPage";
-import CharacterPage from "../pages/CharacterPage";
+
 
 Vue.use(VueRouter)
 
@@ -17,22 +14,22 @@ const routes = [
   {
     path: '/locations/',
     name: 'LocationsPage',
-    component: LocationsPage
+    component: () => import(/* webpackChunkName: "LocationsPage" */'../pages/LocationsPage')
   },
   {
     path: '/location/:id',
     name: 'LocationPage',
-    component: LocationPage
+    component: () => import(/* webpackChunkName: "LocationPage" */'../pages/LocationPage')
   },
   {
     path: '/characters/',
     name: 'CharactersPage',
-    component: CharactersPage
+    component: () => import(/* webpackChunkName: "CharactersPage" */'../pages/CharactersPage')
   },
   {
     path: '/character/:id',
     name: 'CharacterPage',
-    component: CharacterPage
+    component: () => import(/* webpackChunkName: "CharacterPage" */'../pages/CharacterPage')
   },
 ]
 

@@ -4,12 +4,13 @@
         color="grey darken-4"
         dense
         dark
-        height="60px"
+        min-height="60px"
         fixed
     >
       <v-toolbar-title>Рик и Морти</v-toolbar-title>
 
-      <v-spacer></v-spacer>
+      <v-spacer />
+
       <v-btn @click="deleteCharacters" outlined to="/" class="mr-5">
         Главная
       </v-btn>
@@ -24,19 +25,25 @@
 </template>
 
 <script>
-import {mapMutations} from "vuex"
+import {mapActions, mapMutations} from "vuex"
 export default {
   name: "Header",
+  data: () => ({
+    delete: 1
+  }),
 
   methods: {
     ...mapMutations(['reloadAllCharacters']),
+    ...mapActions(['fetchAllCharacters', 'fetchAllLocations']),
     deleteCharacters() {
-      this.reloadAllCharacters()
+      if (this.delete === 1) {
+        this.reloadAllCharacters()
+      }
     },
-  }
+  },
+
 }
 </script>
 
 <style scoped>
-
 </style>

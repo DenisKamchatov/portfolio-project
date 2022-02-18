@@ -102,9 +102,6 @@ export default {
     moreLocations() {
       this.count += 21
     },
-    search() {
-
-    }
   },
   async mounted() {
     for (let i = 1; i <= 7; i++) {

@@ -4,7 +4,7 @@ export default {
         locations: [],
         location: [],
         charactersInLocation: [],
-        countCharactersPages: 3,
+        countCharactersPages: 10,
         countLocationsPages: 7,
     },
     actions: {
@@ -35,7 +35,7 @@ export default {
                 state.characters = characters.results
             } else {
                 for (let i = 0; i < characters.results.length; i++) {
-                    if (characters.results[i].id < 40) {
+                    if (characters.results[i].id <= state.countCharactersPages * 20) {
                         state.characters.push(characters.results[i])
                     }
                 }
@@ -59,9 +59,6 @@ export default {
             state.characters = []
             state.locations = []
         },
-        nextPage(state) {
-            state.page += 1
-        }
     },
     getters: {
         allCharacters(state) {
