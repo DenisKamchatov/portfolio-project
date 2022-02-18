@@ -37,7 +37,6 @@
                   :src="character.image"
               />
               <v-card-text>{{ character.name }}</v-card-text>
-              <v-card-text>{{ character.id }}</v-card-text>
             </v-card>
             <span v-else></span>
           </v-hover>

@@ -15,7 +15,7 @@
         <v-card
             :elevation="hover ? 5 : 2"
             :class="{ 'on-hover': hover }"
-            class="mx-auto card mx-4 my-4 col-4"
+            class="mx-auto card mx-4 my-4 col-4 d-flex flex-column justify-space-between"
             max-width="344"
             v-if="location.id <= count"
         >
@@ -57,7 +57,7 @@
         </v-card>
       </v-hover>
     </v-row>
-    <h2 v-if="searchLocations.length === 0">Локаций с таким названием нет:(</h2>
+    <h2 v-if="searchLocations.length === 0" class="text-center my-5">Локаций с таким названием нет:(</h2>
     <div class="d-flex justify-end mt-5" v-if="searchLocations.length !== 0">
       <v-btn
           color="primary"
