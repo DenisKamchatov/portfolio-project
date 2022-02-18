@@ -33,7 +33,6 @@
             <v-spacer></v-spacer>
             Раса: {{ character.species }}
           </v-card-subtitle>
-          <v-card-text>{{ character.id }}</v-card-text>
           <span
               @click="deleteCharacters"
           >
@@ -83,7 +82,16 @@
     </v-row>
     <h2 class="text-center my-6" v-if="searchCharacters.length === 0">Персонажа с таким именем нет :(</h2>
     <div v-if="searchCharacters.length !== 0" class="d-flex justify-end my-10">
-      <v-btn color="primary" @click="moreCharacters">Показать еще</v-btn>
+      <v-btn
+          color="primary"
+          @click="moreCharacters"
+          v-if="allCharacters.length > count"
+      >Показать еще</v-btn>
+      <v-btn
+          color="primary"
+          v-else
+          disabled
+      >Показать еще</v-btn>
     </div>
   </v-container>
 </template>
