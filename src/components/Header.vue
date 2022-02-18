@@ -29,7 +29,7 @@ import {mapActions, mapMutations} from "vuex"
 export default {
   name: "Header",
   data: () => ({
-    delete: 1
+    delete: 1,
   }),
 
   methods: {

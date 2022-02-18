@@ -116,7 +116,7 @@ export default {
   },
   methods: {
     ...mapActions(['fetchAllCharacters']),
-    ...mapMutations(['reloadAllCharacters', 'nextPage']),
+    ...mapMutations(['reloadAllCharacters']),
     deleteCharacters() {
       this.reloadAllCharacters()
     },
