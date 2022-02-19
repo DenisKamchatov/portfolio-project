@@ -23,16 +23,12 @@
           <v-card-text>Тип: {{ location.type }}</v-card-text>
           <v-card-text>Измерение: {{ location.dimension }}</v-card-text>
 
-          <div
-              @click="deleteCharacters"
-          >
             <v-btn
                 color="primary"
                 :to="{name: 'LocationPage', params:{id: location.id}}"
             >
               Подробнее
             </v-btn>
-          </div>
         </v-card>
         <v-card
             :elevation="hover ? 5 : 2"
@@ -44,16 +40,13 @@
           <v-card-title>{{ location.name }}</v-card-title>
           <v-card-text>Тип: {{ location.type }}</v-card-text>
           <v-card-text>Измерение: {{ location.dimension }}</v-card-text>
-          <div
-              @click="deleteCharacters"
-          >
+
             <v-btn
                 color="primary"
                 :to="{name: 'LocationPage', params:{id: location.id}}"
             >
               Подробнее
             </v-btn>
-          </div>
         </v-card>
       </v-hover>
     </v-row>
@@ -78,7 +71,7 @@
 </template>
 
 <script>
-import {mapGetters, mapActions, mapMutations} from "vuex"
+import {mapGetters} from "vuex"
 export default {
   name: "LocationsPage",
   data: () => ({
@@ -86,7 +79,7 @@ export default {
     search: '',
   }),
   computed: {
-    ...mapGetters(['allLocations', 'getCountLocationsPages']),
+    ...mapGetters(['allLocations']),
     searchLocations() {
       return this.allLocations.filter(locations => {
         return locations.name.toLowerCase().includes(this.search.toLowerCase())
@@ -94,20 +87,11 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['fetchAllLocations']),
-    ...mapMutations(['reloadAllCharacters']),
-    deleteCharacters() {
-      this.reloadAllCharacters()
-    },
     moreLocations() {
       this.count += 21
     },
   },
-  async mounted() {
-    for (let i = 1; i <= 7; i++) {
-      await this.fetchAllLocations(i)
-    }
-  }
+
 }
 </script>
 

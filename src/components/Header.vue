@@ -11,13 +11,13 @@
 
       <v-spacer />
 
-      <v-btn @click="deleteCharacters" outlined to="/" class="mr-5">
+      <v-btn  outlined to="/" class="mr-5">
         Главная
       </v-btn>
-      <v-btn @click="deleteCharacters" outlined :to="{name: 'LocationsPage'}" class="mr-5">
+      <v-btn  outlined :to="{name: 'LocationsPage'}" class="mr-5">
         Локации
       </v-btn>
-      <v-btn @click="deleteCharacters" outlined :to="{name: 'CharactersPage'}">
+      <v-btn  outlined :to="{name: 'CharactersPage'}">
         Карточки
       </v-btn>
     </v-app-bar>
@@ -25,23 +25,8 @@
 </template>
 
 <script>
-import {mapActions, mapMutations} from "vuex"
 export default {
   name: "Header",
-  data: () => ({
-    delete: 1,
-  }),
-
-  methods: {
-    ...mapMutations(['reloadAllCharacters']),
-    ...mapActions(['fetchAllCharacters', 'fetchAllLocations']),
-    deleteCharacters() {
-      if (this.delete === 1) {
-        this.reloadAllCharacters()
-      }
-    },
-  },
-
 }
 </script>
 

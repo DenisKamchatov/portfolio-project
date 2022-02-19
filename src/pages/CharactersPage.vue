@@ -33,16 +33,12 @@
             <v-spacer></v-spacer>
             Раса: {{ character.species }}
           </v-card-subtitle>
-          <span
-              @click="deleteCharacters"
-          >
             <v-btn
                 color="primary"
                 :to="{name: 'CharacterPage', params:{id: character.id}}"
             >
               Посмотреть
             </v-btn>
-          </span>
         </v-card>
         <v-card
             :elevation="hover ? 5 : 2"
@@ -67,16 +63,12 @@
             <v-spacer></v-spacer>
             Раса: {{ character.species }}
           </v-card-subtitle>
-          <span
-              @click="deleteCharacters"
-          >
             <v-btn
                 color="primary"
                 :to="{name: 'CharacterPage', params:{id: character.id}}"
             >
               Посмотреть
             </v-btn>
-          </span>
         </v-card>
       </v-hover>
     </v-row>
@@ -97,7 +89,7 @@
 </template>
 
 <script>
-import {mapGetters, mapActions, mapMutations} from "vuex"
+import {mapGetters} from "vuex"
 export default {
   name: "Posts",
   components: {
@@ -115,20 +107,11 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['fetchAllCharacters']),
-    ...mapMutations(['reloadAllCharacters']),
-    deleteCharacters() {
-      this.reloadAllCharacters()
-    },
     moreCharacters() {
       this.count += 20
     }
   },
-  async mounted() {
-    for (let i = 1; i <= this.getCountCharactersPages; i++) {
-      await this.fetchAllCharacters(i)
-    }
-  }
+
 }
 </script>
 

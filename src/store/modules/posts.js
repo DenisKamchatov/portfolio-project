@@ -50,15 +50,13 @@ export default {
             state.location = location
         },
         updateCharactersInLocation(state, character) {
-            if (character.id <= 40) {
+            if (character.id <= 200) {
                 state.charactersInLocation.push(character)
             }
         },
-        reloadAllCharacters(state) {
+        deleteCharactersInLocation(state) {
             state.charactersInLocation = []
-            state.characters = []
-            state.locations = []
-        },
+        }
     },
     getters: {
         allCharacters(state) {

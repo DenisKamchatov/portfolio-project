@@ -29,7 +29,6 @@
                 :class="{ 'on-hover': hover }"
                 max-width="30%"
                 class="mt-3 card"
-                @click="deleteCharacters"
                 :to="{name: 'CharacterPage', params: {id: character.id}}"
                 v-if="count > i"
             >
@@ -68,14 +67,14 @@
 </template>
 
 <script>
-import {mapActions, mapGetters, mapMutations} from "vuex"
+import {mapActions, mapGetters} from "vuex"
 export default {
   name: "LocationPage",
   data: () => ({
     count: 10
   }),
   computed: {
-    ...mapGetters(['allLocations', 'getCharactersInLocation', 'getCountCharactersPages']),
+    ...mapGetters(['allLocations', "getCharactersInLocation"]),
     locationId() {
       return parseInt(this.$route.params.id)
     },
@@ -84,24 +83,12 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['fetchAllLocations', 'fetchCharacterInLocation', 'fetchAllCharacters']),
-    ...mapMutations(['reloadAllCharacters']),
-    deleteCharacters() {
-      this.reloadAllCharacters()
-    },
+    ...mapActions(['fetchCharacterInLocation']),
     moreCharacters() {
       this.count += 20
     },
   },
   async mounted() {
-    for (let i = 1; i <= 7; i++) {
-      await this.fetchAllLocations(i)
-    }
-
-    for (let i = 1; i <= this.getCountCharactersPages; i++) {
-      await this.fetchAllCharacters(i)
-    }
-
     for (let page of this.locationData.residents) {
       await this.fetchCharacterInLocation(page)
     }
