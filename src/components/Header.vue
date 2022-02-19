@@ -45,11 +45,6 @@ export default {
       } else if (num === 'mainPage') {
         this.reloadAllCharacters('none')
       }
-
-      // this.delete += 1
-      // if (this.delete === 1) {
-      //   this.reloadAllCharacters()
-      // }
     },
   },
 
