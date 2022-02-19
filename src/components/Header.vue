@@ -57,7 +57,4 @@ export default {
 </script>
 
 <style scoped>
-  .v-btn--active {
-    border: none;
-  }
 </style>
