@@ -56,8 +56,14 @@ export default {
         },
         reloadAllCharacters(state, data) {
             if (data === 'characters') {
+                if (state.locations.length !== 0) {
+                    state.locations = []
+                }
                 state.characters = []
             } else if (data === 'locations') {
+                if (state.characters.length !== 0) {
+                    state.characters = []
+                }
                 state.locations = []
                 state.charactersInLocation = []
             } else if (data === 'none') {
