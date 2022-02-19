@@ -56,20 +56,21 @@ export default {
         },
         reloadAllCharacters(state, data) {
             if (data === 'characters') {
-                if (state.locations.length !== 0) {
+                if (state.locations.length < state.countLocationsPages * 20) {
                     state.locations = []
                 }
                 state.characters = []
             } else if (data === 'locations') {
-                if (state.characters.length !== 0) {
+                if (state.characters.length < state.countCharactersPages * 20) {
                     state.characters = []
                 }
                 state.locations = []
                 state.charactersInLocation = []
-            } else if (data === 'none') {
+            } else {
                 state.locations = []
                 state.charactersInLocation = []
                 state.characters = []
+
             }
         },
     },
