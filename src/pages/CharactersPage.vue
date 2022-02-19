@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="mt-16">
     <h1 class="text-center pb-5">Карточки с персонажами из Рика и Морти</h1>
     <v-text-field
         v-model="search"

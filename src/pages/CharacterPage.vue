@@ -1,5 +1,5 @@
 <template>
-  <v-container class="pt-8">
+  <v-container class="pt-8 mt-16">
     <p><span @click="deleteCharacters"><router-link :to="{name: 'CharactersPage'}">Карточки с персонажами</router-link></span> / Персонаж: {{ characterData.name }}</p>
     <v-container d-flex justify-center>
       <v-card class="pa-7" width="500px">

@@ -4,10 +4,18 @@
         color="grey darken-4"
         dense
         dark
-        height="60px"
+        height="65px"
         fixed
     >
-      <v-toolbar-title>Рик и Морти</v-toolbar-title>
+      <v-toolbar-title
+          @click="deleteCharacters('mainPage')"
+      >
+      <router-link
+          to="/"
+      >
+        Рик и Морти
+      </router-link>
+      </v-toolbar-title>
 
       <v-spacer />
 
@@ -18,7 +26,7 @@
         Локации
       </v-btn>
       <v-btn @click="deleteCharacters('charactersPage')" outlined :to="{name: 'CharactersPage'}">
-        Карточки
+        Персонажи
       </v-btn>
     </v-app-bar>
   </div>
@@ -52,4 +60,8 @@ export default {
 </script>
 
 <style scoped>
+  .router-link-active {
+    color: white;
+    text-decoration: none;
+  }
 </style>

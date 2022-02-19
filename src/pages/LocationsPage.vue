@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="mt-16">
     <h1 class="text-center">Страница с локациями</h1>
     <v-text-field
         v-model="search"

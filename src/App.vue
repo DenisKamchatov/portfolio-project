@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <Header />
-    <router-view class="mt-16"/>
+    <router-view/>
   </v-app>
 </template>
 

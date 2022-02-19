@@ -1,5 +1,5 @@
 <template>
-  <v-container class="pt-8">
+  <v-container class="pt-8 mt-16">
     <p>
       <router-link :to="{name: 'LocationsPage'}">Страница с локациями</router-link>
       /
