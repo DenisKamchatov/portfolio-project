@@ -6,6 +6,7 @@ export default {
         charactersInLocation: [],
         countCharactersPages: 10,
         countLocationsPages: 7,
+        countLocations: [],
     },
     actions: {
         async fetchAllCharacters(ctx, page) {
@@ -42,6 +43,7 @@ export default {
             }
         },
         updateAllLocations(state, locations) {
+            state.countLocations = locations.info.count
             for (let i = 0; i < locations.results.length; i++) {
                 state.locations.push(locations.results[i])
             }
@@ -56,7 +58,7 @@ export default {
         },
         reloadAllCharacters(state, data) {
             if (data === 'characters') {
-                if (state.locations.length < state.countLocationsPages * 20) {
+                if (state.locations.length < state.countLocations) {
                     state.locations = []
                 }
                 state.characters = []

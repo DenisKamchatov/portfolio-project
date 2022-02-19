@@ -17,6 +17,7 @@
     <div class="blackout"></div>
     <v-img
         :src="images.mainImage"
+        width="100vw"
         height="100vh"
     />
   </main>
@@ -54,7 +55,7 @@ export default {
   .main__text {
     position: absolute;
     z-index: 2;
-    top: 35%;
+    top: 35vh;
     width: 100%;
     padding: 0 100px;
     color: #EEEEEE;
