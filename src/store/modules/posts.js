@@ -54,10 +54,17 @@ export default {
                 state.charactersInLocation.push(character)
             }
         },
-        reloadAllCharacters(state) {
-            state.charactersInLocation = []
-            state.characters = []
-            state.locations = []
+        reloadAllCharacters(state, data) {
+            if (data === 'characters') {
+                state.characters = []
+            } else if (data === 'locations') {
+                state.locations = []
+                state.charactersInLocation = []
+            } else if (data === 'none') {
+                state.locations = []
+                state.charactersInLocation = []
+                state.characters = []
+            }
         },
     },
     getters: {

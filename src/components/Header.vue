@@ -11,13 +11,13 @@
 
       <v-spacer />
 
-      <v-btn @click="deleteCharacters" outlined to="/" class="mr-5">
+      <v-btn @click="deleteCharacters('mainPage')" outlined to="/" class="mr-5">
         Главная
       </v-btn>
-      <v-btn @click="deleteCharacters" outlined :to="{name: 'LocationsPage'}" class="mr-5">
+      <v-btn @click="deleteCharacters('locationsPage')" outlined :to="{name: 'LocationsPage'}" class="mr-5">
         Локации
       </v-btn>
-      <v-btn @click="deleteCharacters" outlined :to="{name: 'CharactersPage'}">
+      <v-btn @click="deleteCharacters('charactersPage')" outlined :to="{name: 'CharactersPage'}">
         Карточки
       </v-btn>
     </v-app-bar>
@@ -29,16 +29,27 @@ import {mapActions, mapMutations} from "vuex"
 export default {
   name: "Header",
   data: () => ({
-    delete: 1,
+    delete: 0,
+
   }),
 
   methods: {
     ...mapMutations(['reloadAllCharacters']),
     ...mapActions(['fetchAllCharacters', 'fetchAllLocations']),
-    deleteCharacters() {
-      if (this.delete === 1) {
-        this.reloadAllCharacters()
+    deleteCharacters(num) {
+
+      if (num === 'locationsPage') {
+        this.reloadAllCharacters('characters')
+      } else if (num === 'charactersPage') {
+        this.reloadAllCharacters('locations')
+      } else if (num === 'mainPage') {
+        this.reloadAllCharacters('none')
       }
+
+      // this.delete += 1
+      // if (this.delete === 1) {
+      //   this.reloadAllCharacters()
+      // }
     },
   },
 
@@ -46,4 +57,7 @@ export default {
 </script>
 
 <style scoped>
+  .v-btn--active {
+    border: none;
+  }
 </style>
